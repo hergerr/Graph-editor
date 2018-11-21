@@ -122,7 +122,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 		graph.addNode(n2);
 		graph.addNode(n3);
 		graph.addNode(n4);
-		panel.setGraph(graph);
+		graphPanel.setGraph(graph);
 		
 	}
 
@@ -135,7 +135,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 			showExampleGraph();
 		}
 		if(e.getSource() == menuListOfNodes) {
-			showListOfNodes(panel.getGraph);
+			showListOfNodes(graphPanel.getGraph());
 		}
 		if(e.getSource() == menuAuthor) {
 			JOptionPane.showMessageDialog(this, APP_AUTHOR, APP_TITLE, JOptionPane.INFORMATION_MESSAGE);

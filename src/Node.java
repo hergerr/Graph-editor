@@ -19,6 +19,8 @@ import java.awt.Graphics;
  */
 
 public class Node{
+	
+	//wspolrzedne i promien wezla
 	private int x,y,r;
 	private Color color;
 
@@ -72,6 +74,10 @@ public class Node{
 	@Override
 	public String toString(){
 		return ("(" + x +", " + y + ", " + r + ")");
+	}
+
+	public boolean isMouseOver(int mx, int my) {
+		return  (x-mx)*(x-mx)+(y-my)*(y-my) <= r*r;
 	}
 	
 }

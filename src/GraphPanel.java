@@ -1,10 +1,14 @@
 import java.awt.Cursor;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 /*
  *  Program: Edytor grafu
@@ -40,9 +44,95 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		this.requestFocus();
 	}
 	
+	public Graph getGraph() {
+		return graph;
+	}
+	
+	public void setGraph(Graph graph) {
+		this.graph = graph;
+	}
+	
+	public Node findNode(int mx, int my) {
+		for(Node node: graph.getNodes()) {
+			if(node.isMouseOver(mx,my)) {
+				return node;
+			}
+		}
+		return null;
+	}
+	
+	public Node findNode(MouseEvent event) {
+		return findNode(event.getX(), event.getY());
+	}
+	
+	public void setMouseCursor(MouseEvent event) {
+		nodeUnderCursor = findNode(event);
+		if(nodeUnderCursor != null) mouseCursor = Cursor.HAND_CURSOR;
+		else if(mouseButtonLeft) mouseCursor = Cursor.MOVE_CURSOR;
+		else mouseCursor = Cursor.DEFAULT_CURSOR;
+		
+		setCursor(Cursor.getPredefinedCursor(mouseCursor));
+		mouseX = event.getX();
+		mouseY = event.getY();
+	}
+	
+	public void setMouseCursor() {
+		nodeUnderCursor = findNode(mouseX, mouseY);
+		if(nodeUnderCursor != null) mouseCursor = Cursor.HAND_CURSOR;
+		else if(mouseButtonLeft) mouseCursor = Cursor.MOVE_CURSOR;
+		else mouseCursor = Cursor.DEFAULT_CURSOR;
+		
+		setCursor(Cursor.getPredefinedCursor(mouseCursor));
+	}
+	
+	private void moveNode(int dx, int dy, Node node) {
+		node.setX(node.getX() + dx);
+		node.setY(node.getY() + dx);
+	}
+	
+	void moveAllNodes(int dx, int dy) {
+		for(Node node: graph.getNodes()) {
+			moveNode(dx,dy,node);
+		}
+	}
+	
+	
+	
 	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if(graph==null) return;
+		graph.draw(g);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent event) {
+		int dist;
+		if (event.isShiftDown()) dist = 10;
+		else dist = 1;
+		switch (event.getKeyCode()) {
+			case KeyEvent.VK_LEFT:
+				moveAllNodes(-dist, 0);
+				break;
+			case KeyEvent.VK_RIGHT:
+				moveAllNodes(dist, 0);
+				break;
+			case KeyEvent.VK_UP:
+				moveAllNodes(0, -dist);
+				break;
+			case KeyEvent.VK_DOWN:
+				moveAllNodes(0, dist);
+				break;
+			case KeyEvent.VK_DELETE:
+				if (nodeUnderCursor != null) {
+					graph.removeNode(nodeUnderCursor);
+					nodeUnderCursor = null;
+				}
+				break;
+		}
+	
+	repaint();
+	setMouseCursor();
 		
 	}
 
@@ -59,8 +149,17 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseDragged(MouseEvent event) {
+		if (mouseButtonLeft) {
+			if (nodeUnderCursor != null) {
+				moveNode(event.getX() - mouseX, event.getY() - mouseY, nodeUnderCursor);
+			} else {
+				moveAllNodes(event.getX() - mouseX, event.getY() - mouseY);
+			}
+		}
+		mouseX = event.getX();
+		mouseY = event.getY();
+		repaint();
 		
 	}
 
@@ -89,13 +188,44 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mousePressed(MouseEvent event) {
+		if (event.getButton()==1) mouseButtonLeft = true;
+		if (event.getButton()==3) mouseButtonRight = true;
+		setMouseCursor(event);
 		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mouseReleased(MouseEvent event) {
+		if (event.getButton() == 1)
+			mouseButtonLeft = false;
+		if (event.getButton() == 3)
+			mouseButtonRight = false;
+		setMouseCursor(event);
+		if (event.getButton() == 3) {
+			if (nodeUnderCursor != null) {
+				createPopupMenu(event, nodeUnderCursor);
+			} else {
+				createPopupMenu(event);
+			}
+		}
+		
+	}
+
+	private void createPopupMenu(MouseEvent event) {
+		JMenuItem menuItem = new JMenuItem("Utworz nowy wezel");
+		JPopupMenu popup = new JPopupMenu();
+		menuItem.addActionListener((actionEvent)->{
+			graph.addNode(new Node(event.getX(),event.getY()));
+			repaint();
+		});
+		
+		popup.add(menuItem);
+		popup.show(event.getComponent(), event.getX(), event.getY());
+		
+	}
+
+	private void createPopupMenu(MouseEvent event, Node nodeUnderCursor2) {
 		// TODO Auto-generated method stub
 		
 	}
