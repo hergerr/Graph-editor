@@ -22,6 +22,14 @@ public class Node{
 	private int x,y,r;
 	private Color color;
 
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
 	public int getX() {
 		return x;
 	}
@@ -59,6 +67,11 @@ public class Node{
 		g.fillOval(x-r, y-r, 2*r, 2*r);
 		g.setColor(Color.BLACK);
 		g.drawOval(x-r, y-r, 2*r, 2*r);
+	}
+	
+	@Override
+	public String toString(){
+		return ("(" + x +", " + y + ", " + r + ")");
 	}
 	
 }
