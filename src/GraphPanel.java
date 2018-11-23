@@ -206,7 +206,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		setMouseCursor(event);
 		
 		if (event.getButton() == 3) {
-			if (nodeUnderCursor != null ) {
+			if (nodeUnderCursor != null) {
 				createPopupMenu(event, nodeUnderCursor);
 			} else {
 				createPopupMenu(event);
@@ -256,15 +256,13 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		//opcja odpowiedzialna za utworzenie krawedzi
 		menuItem = new JMenuItem("Utworz krawedz z wezla");
 		menuItem.addActionListener(actionListener -> {
-			
+			int x1 = node.getX();
+			int y1 = node.getY();
+			mouseCursor = Cursor.WAIT_CURSOR;
 		});
 		popup.add(menuItem);
 		
 		popup.show(event.getComponent(), event.getX(), event.getY());
-	}
-	
-	private void drawALine() {
-		
 	}
 	
 }

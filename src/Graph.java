@@ -24,9 +24,28 @@ public class Graph implements Serializable{
 
 	//lista wêz³ów grafu
 	private List<Node> nodes;
+	
+	//lista krawedzi grafu
+	private List<Line> lines;
+	
 	public Graph() {
 		this.nodes = new ArrayList<Node>();
+		this.lines = new ArrayList<Line>();
 	}
+	
+	public void addLine(Line line) {
+		lines.add(line);
+	}
+	
+	public void removeLine(Line line) {
+		lines.remove(line);
+	}
+	
+	public Line[] getLines() {
+		Line[] array = new Line[0];
+		return lines.toArray(array);
+	}
+	
 	
 	public void addNode(Node node) {
 		nodes.add(node);
@@ -45,6 +64,10 @@ public class Graph implements Serializable{
 	public void draw(Graphics g) {
 		for(Node node: nodes) {
 			node.draw(g);
+		}
+		
+		for(Line line:lines) {
+			line.draw(g);
 		}
 	}
 }
