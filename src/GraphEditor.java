@@ -102,8 +102,9 @@ public class GraphEditor extends JFrame implements ActionListener{
 			if(i % 5 == 0) {
 				message.append("\n");
 			}
-			JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista wêz³ów", JOptionPane.PLAIN_MESSAGE);
 		}
+		
+		JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista wêz³ów", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	private void showExampleGraph() {
@@ -129,7 +130,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == menuNew) {
-			//nowy graf
+			graphPanel.setGraph(new Graph());
 		}
 		if(e.getSource() == menuShowExample) {
 			showExampleGraph();

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -6,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.JColorChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -87,7 +89,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	
 	private void moveNode(int dx, int dy, Node node) {
 		node.setX(node.getX() + dx);
-		node.setY(node.getY() + dx);
+		node.setY(node.getY() + dy);
 	}
 	
 	void moveAllNodes(int dx, int dy) {
@@ -107,7 +109,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		int dist;
+		{  int dist;
 		if (event.isShiftDown()) dist = 10;
 		else dist = 1;
 		switch (event.getKeyCode()) {
@@ -130,7 +132,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 				}
 				break;
 		}
-	
+	}
 	repaint();
 	setMouseCursor();
 		
@@ -202,8 +204,9 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		if (event.getButton() == 3)
 			mouseButtonRight = false;
 		setMouseCursor(event);
+		
 		if (event.getButton() == 3) {
-			if (nodeUnderCursor != null) {
+			if (nodeUnderCursor != null ) {
 				createPopupMenu(event, nodeUnderCursor);
 			} else {
 				createPopupMenu(event);
@@ -225,8 +228,42 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		
 	}
 
-	private void createPopupMenu(MouseEvent event, Node nodeUnderCursor2) {
-		// TODO Auto-generated method stub
+	private void createPopupMenu(MouseEvent event, Node node) {
+		JMenuItem menuItem = new JMenuItem("Zmieñ kolor wêz³a");
+		JPopupMenu popup = new JPopupMenu();
+		
+		
+		//opcja odpowiedzialna za wybor koloru
+		menuItem.addActionListener(actionListener -> {
+			Color newColor = JColorChooser.showDialog(this, "Wybierz kolor", node.getColor());
+			if(newColor != null) {
+				node.setColor(newColor);
+			}
+			repaint();
+		});
+		
+		popup.add(menuItem);
+		
+		//opcja odpowiedzialna za usuwanie wezlow
+		menuItem = new JMenuItem("Usuñ wêze³");
+		menuItem.addActionListener((actionListener)->{
+			graph.removeNode(node);
+			repaint();
+		});
+		
+		popup.add(menuItem);
+		
+		//opcja odpowiedzialna za utworzenie krawedzi
+		menuItem = new JMenuItem("Utworz krawedz z wezla");
+		menuItem.addActionListener(actionListener -> {
+			
+		});
+		popup.add(menuItem);
+		
+		popup.show(event.getComponent(), event.getX(), event.getY());
+	}
+	
+	private void drawALine() {
 		
 	}
 	
