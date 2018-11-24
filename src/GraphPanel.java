@@ -110,6 +110,14 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		node.setX(node.getX() + dx);
 		node.setY(node.getY() + dy);
 	}
+	
+	private void moveLine(int x, int y, Line line) {
+		line.getNodeA().setX(line.getNodeA().getX() + x);
+		line.getNodeA().setY(line.getNodeA().getY() + y);
+
+		line.getNodeB().setX(line.getNodeB().getX() + x);
+		line.getNodeB().setY(line.getNodeB().getY() + y);
+	}
 		
 	void moveAllNodes(int dx, int dy) {
 		for(Node node: graph.getNodes()) {
@@ -184,7 +192,10 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		if (mouseButtonLeft) {
 			if (nodeUnderCursor != null) {
 				moveNode(event.getX() - mouseX, event.getY() - mouseY, nodeUnderCursor);
-			} else {
+			} else if (lineUnderCursor != null) {
+				moveLine(event.getX() - mouseX, event.getY() - mouseY, lineUnderCursor);
+			}
+			else {
 				moveAllNodes(event.getX() - mouseX, event.getY() - mouseY);
 			}
 		}

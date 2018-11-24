@@ -1,16 +1,20 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.Serializable;
 
 public class Line implements Serializable{
 	private static final long serialVersionUID = 1L;
-	Color color;
-	Node nodeA, nodeB;
+	private Color color;
+	private Node nodeA, nodeB;
 	
 	
 	public void draw(Graphics g) {
+		Graphics2D g2= (Graphics2D)g;
+		g2.setColor(color);
+		g2.setStroke(new BasicStroke(3));
 		g.drawLine(nodeA.getX(), nodeA.getY(), nodeB.getX(), nodeB.getY());
-		g.setColor(Color.BLUE);
 	}
 	
 	public boolean isMouseOver(int mx, int my) {
@@ -43,6 +47,7 @@ public class Line implements Serializable{
 
 	public void setColor(Color color) {
 		this.color = color;
+		System.out.println(color);
 	}
 
 	public Node getNodeA() {
@@ -64,6 +69,13 @@ public class Line implements Serializable{
 	public Line(Node nodeA, Node nodeB) {
 		this.nodeA = nodeA;
 		this.nodeB = nodeB;
+		color = Color.PINK;
+	}
+	
+	public Line(Node nodeA, Node nodeB, Color color) {
+		this.nodeA = nodeA;
+		this.nodeB = nodeB;
+		this.color = color;
 	}
 	
 	

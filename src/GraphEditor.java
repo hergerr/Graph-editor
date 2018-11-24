@@ -146,10 +146,10 @@ public class GraphEditor extends JFrame implements ActionListener{
 		n3.setR(20);
 		Node n4 = new Node(200, 250);
 		
-		Line l1 = new Line(n1, n2);
-		Line l2 = new Line(n3, n4);
-		Line l3 = new Line(n2, n3);
-		Line l4 = new Line(n2, n4);
+		Line l1 = new Line(n1, n2, Color.BLUE);
+		Line l2 = new Line(n3, n4, Color.PINK);
+		Line l3 = new Line(n2, n3, Color.GREEN);
+		Line l4 = new Line(n2, n4, Color.ORANGE);
 		n4.setColor(Color.GREEN);
 		n4.setR(30);
 
