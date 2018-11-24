@@ -137,13 +137,15 @@ public class GraphEditor extends JFrame implements ActionListener{
 		
 		Line l1 = new Line(n1, n2);
 		Line l2 = new Line(n3, n4);
+		Line l3 = new Line(n2, n3);
+		Line l4 = new Line(n2, n4);
 		n4.setColor(Color.GREEN);
 		n4.setR(30);
 
 		graph.addLine(l1);
 		graph.addLine(l2);
-		
-		
+		graph.addLine(l3);
+		graph.addLine(l4);
 		
 		graph.addNode(n1);
 		graph.addNode(n2);

@@ -58,13 +58,10 @@ public class Graph implements Serializable{
 		while(iterator.hasNext()) {
 			Line line = iterator.next();
 			
-			if(line.getNodeA() == node && line.getNodeB() != node) {
+			if(line.getNodeA() == node || line.getNodeB() == node) {
 				iterator.remove();
 			}
 			
-			if(line.getNodeA() != node && line.getNodeB() == node) {
-				iterator.remove();
-			}
 		}
 		nodes.remove(node);
 	}
