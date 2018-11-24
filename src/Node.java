@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * 
@@ -24,6 +26,7 @@ public class Node{
 	private int x,y,r;
 	private Color color;
 
+	
 	public Color getColor() {
 		return color;
 	}

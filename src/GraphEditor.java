@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -53,6 +54,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 	private JMenuItem menuShowExample = new JMenuItem("Przyklad");
 	private JMenuItem menuExit = new JMenuItem("Zakoncz");
 	private JMenuItem menuListOfNodes = new JMenuItem("Lista wezlow");
+	private JMenuItem menuListOfLines = new JMenuItem("Lista krawêdzi");
 	private JMenuItem menuAuthor = new JMenuItem("Autor");
 	private JMenuItem menuInstruction = new JMenuItem("Instrukcja");
 	
@@ -71,12 +73,14 @@ public class GraphEditor extends JFrame implements ActionListener{
 		menuListOfNodes.addActionListener(this);
 		menuAuthor.addActionListener(this);
 		menuInstruction.addActionListener(this);
+		menuListOfLines.addActionListener(this);
 
 		menuGraph.setMnemonic(KeyEvent.VK_G);
 		menuGraph.add(menuNew);
 		menuGraph.add(menuShowExample);
 		menuGraph.addSeparator();
 		menuGraph.add(menuListOfNodes);
+		menuGraph.add(menuListOfLines);
 		menuGraph.addSeparator();
 		menuGraph.add(menuExit);
 
@@ -107,6 +111,20 @@ public class GraphEditor extends JFrame implements ActionListener{
 		JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista wêz³ów", JOptionPane.PLAIN_MESSAGE);
 	}
 	
+	private void showListOfLines(Graph graph) {
+		Line array[] = graph.getLines();
+		int i = 0;
+		StringBuilder message = new StringBuilder("Liczba krawêdzi " + array.length + "\n");
+		
+		for(Line line: array) {
+			message.append(line + "   ");
+			if(i % 2 == 0) {
+				message.append("\n");
+			}
+		}
+		JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista krawêdzi", JOptionPane.PLAIN_MESSAGE);
+	}
+	
 	private void showExampleGraph() {
 		Graph graph = new Graph();
 
@@ -117,17 +135,21 @@ public class GraphEditor extends JFrame implements ActionListener{
 		n3.setR(20);
 		Node n4 = new Node(200, 250);
 		
-		Line l1 = new Line(n1.getX(), n1.getY(), n2.getX(), n2.getY());
-		Line l2 = new Line(n2.getX(), n2.getX(), n3.getX(), n3.getY());
+		Line l1 = new Line(n1, n2);
+		Line l2 = new Line(n3, n4);
 		n4.setColor(Color.GREEN);
 		n4.setR(30);
 
+		graph.addLine(l1);
+		graph.addLine(l2);
+		
+		
+		
 		graph.addNode(n1);
 		graph.addNode(n2);
 		graph.addNode(n3);
 		graph.addNode(n4);
-		graph.addLine(l1);
-		graph.addLine(l2);
+
 		graphPanel.setGraph(graph);
 		
 	}
@@ -151,6 +173,9 @@ public class GraphEditor extends JFrame implements ActionListener{
 		}
 		if(e.getSource() == menuExit) {
 			System.exit(0);
+		}
+		if(e.getSource() == menuListOfLines) {
+			showListOfLines(graphPanel.getGraph());
 		}
 	}
 	

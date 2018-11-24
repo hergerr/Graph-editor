@@ -3,76 +3,67 @@ import java.awt.Graphics;
 
 public class Line {
 	Color color;
-	int x1,y1,x2,y2;
-	
-	
-	public Color getColor() {
-		return color;
-	}
-	public void setColor(Color color) {
-		this.color = color;
-	}
-	public int getX1() {
-		return x1;
-	}
-	public void setX1(int x1) {
-		this.x1 = x1;
-	}
-	public int getY1() {
-		return y1;
-	}
-	public void setY1(int y1) {
-		this.y1 = y1;
-	}
-	public int getX2() {
-		return x2;
-	}
-	public void setX2(int x2) {
-		this.x2 = x2;
-	}
-	public int getY2() {
-		return y2;
-	}
-	public void setY2(int y2) {
-		this.y2 = y2;
-	}
-	
-	
-	public Line(int x1, int y1, int x2, int y2) {
-		this.x1 = x1;
-		this.y1 = y1;
-		this.x2 = x2;
-		this.y2 = y2;
-	}
+	Node nodeA, nodeB;
 	
 	
 	public void draw(Graphics g) {
-		g.drawLine(x1, y1, x2, y2);
-		g.setColor(Color.BLUE);
+		g.drawLine(nodeA.getX(), nodeA.getY(), nodeB.getX(), nodeB.getY());
+		g.setColor(Color.BLACK);
 	}
 	
 	public boolean isMouseOver(int mx, int my) {
-		return ((my-y1)*(x2-x1) - (y2-y1)*(mx-x1)) == 0;
+		return ((my-nodeA.getY())*(nodeB.getX()-nodeA.getX()) - (nodeB.getY()-nodeA.getY())*(mx-nodeA.getX())) == 0;
 	}
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
-		sb.append(x1);
+		sb.append(nodeA.getX());
 		sb.append(", ");
 		
-		sb.append(y1);
+		sb.append(nodeA.getY());
 		sb.append(")");
 		sb.append(" -------->");
 		
 		sb.append("(");
-		sb.append(x2);
+		sb.append(nodeB.getX());
 		sb.append(", ");
 		
-		sb.append(y2);
+		sb.append(nodeB.getY());
 		sb.append(")");
 		
 		return sb.toString();
 	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Node getNodeA() {
+		return nodeA;
+	}
+
+	public void setNodeA(Node nodeA) {
+		this.nodeA = nodeA;
+	}
+
+	public Node getNodeB() {
+		return nodeB;
+	}
+
+	public void setNodeB(Node nodeB) {
+		this.nodeB = nodeB;
+	}
+
+	public Line(Node nodeA, Node nodeB) {
+		this.nodeA = nodeA;
+		this.nodeB = nodeB;
+	}
+	
+	
 	
 }
