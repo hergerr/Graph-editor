@@ -37,6 +37,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	private boolean mouseButtonLeft, mouseButtonRight;
 	private int mouseCursor = Cursor.DEFAULT_CURSOR;
 	private Node nodeUnderCursor = null;
+	private Line lineUnderCursor = null;
 	
 	public GraphPanel() {
 		this.addMouseListener(this);
@@ -63,13 +64,27 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		return null;
 	}
 	
+	public Line findLine(int x1, int y1) {
+		for(Line line: graph.getLines()) {
+			if(line.isMouseOver(x1,y1)) {
+				return line;
+			}
+		}
+		return null;
+	}
+	
 	public Node findNode(MouseEvent event) {
 		return findNode(event.getX(), event.getY());
 	}
 	
+	public Line findLine(MouseEvent event) {
+		return findLine(event.getX(), event.getY());
+	}
+	
 	public void setMouseCursor(MouseEvent event) {
 		nodeUnderCursor = findNode(event);
-		if(nodeUnderCursor != null) mouseCursor = Cursor.HAND_CURSOR;
+		lineUnderCursor = findLine(event);
+		if(nodeUnderCursor != null || lineUnderCursor != null) mouseCursor = Cursor.HAND_CURSOR;
 		else if(mouseButtonLeft) mouseCursor = Cursor.MOVE_CURSOR;
 		else mouseCursor = Cursor.DEFAULT_CURSOR;
 		
@@ -92,14 +107,26 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		node.setY(node.getY() + dy);
 	}
 	
+	private void moveLine(int x1, int y1, int x2, int y2, Line line) {
+		line.setX1(line.getX1() + x1);
+		line.setY1(line.getY1() + y1);
+		line.setX2(line.getX2() + x2);
+		line.setY2(line.getY2() + y2);
+	}
+	
 	void moveAllNodes(int dx, int dy) {
 		for(Node node: graph.getNodes()) {
 			moveNode(dx,dy,node);
 		}
 	}
 	
+	void moveAllLines(int x1, int y1, int x2, int y2) {
+		for(Line line: graph.getLines()) {
+			moveLine(x1, y1, x2, y2,line);
+		}
+	}
 	
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -115,15 +142,19 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		switch (event.getKeyCode()) {
 			case KeyEvent.VK_LEFT:
 				moveAllNodes(-dist, 0);
+				moveAllLines(-dist, 0, -dist, 0);
 				break;
 			case KeyEvent.VK_RIGHT:
 				moveAllNodes(dist, 0);
+				moveAllLines(dist, 0, dist, 0);
 				break;
 			case KeyEvent.VK_UP:
 				moveAllNodes(0, -dist);
+				moveAllLines(0, -dist, 0, -dist);
 				break;
 			case KeyEvent.VK_DOWN:
 				moveAllNodes(0, dist);
+				moveAllLines(0, dist, 0, dist);
 				break;
 			case KeyEvent.VK_DELETE:
 				if (nodeUnderCursor != null) {
@@ -155,8 +186,10 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		if (mouseButtonLeft) {
 			if (nodeUnderCursor != null) {
 				moveNode(event.getX() - mouseX, event.getY() - mouseY, nodeUnderCursor);
+				//dodac poruszanie linia
 			} else {
 				moveAllNodes(event.getX() - mouseX, event.getY() - mouseY);
+				moveAllLines(event.getX() - mouseX, event.getY() - mouseY,event.getX() - mouseX, event.getY() - mouseY);
 			}
 		}
 		mouseX = event.getX();
@@ -166,8 +199,8 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseMoved(MouseEvent event) {
+		setMouseCursor(event);
 		
 	}
 

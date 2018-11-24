@@ -51,6 +51,10 @@ public class Line {
 		g.setColor(Color.BLUE);
 	}
 	
+	public boolean isMouseOver(int mx, int my) {
+		return ((my-y1)*(x2-x1) - (y2-y1)*(mx-x1)) == 0;
+	}
+	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");

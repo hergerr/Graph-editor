@@ -118,6 +118,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 		Node n4 = new Node(200, 250);
 		
 		Line l1 = new Line(n1.getX(), n1.getY(), n2.getX(), n2.getY());
+		Line l2 = new Line(n2.getX(), n2.getX(), n3.getX(), n3.getY());
 		n4.setColor(Color.GREEN);
 		n4.setR(30);
 
@@ -126,6 +127,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 		graph.addNode(n3);
 		graph.addNode(n4);
 		graph.addLine(l1);
+		graph.addLine(l2);
 		graphPanel.setGraph(graph);
 		
 	}
