@@ -87,6 +87,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		if(nodeUnderCursor != null) mouseCursor = Cursor.HAND_CURSOR;
 		else if(lineUnderCursor != null) mouseCursor = Cursor.CROSSHAIR_CURSOR;
 		else if(mouseButtonLeft) mouseCursor = Cursor.MOVE_CURSOR;
+		else if(mouseButtonRight) mouseCursor = Cursor.WAIT_CURSOR;
 		else mouseCursor = Cursor.DEFAULT_CURSOR;
 		
 		setCursor(Cursor.getPredefinedCursor(mouseCursor));
@@ -145,6 +146,9 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 				if (nodeUnderCursor != null) {
 					graph.removeNode(nodeUnderCursor);
 					nodeUnderCursor = null;
+				} else if (lineUnderCursor != null) {
+					graph.removeLine(lineUnderCursor);
+					lineUnderCursor = null;
 				}
 				break;
 		}
@@ -271,6 +275,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 				node.setColor(newColor);
 			}
 			repaint();
+			
 		});
 		
 		popup.add(menuItem);
@@ -287,9 +292,11 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		//opcja odpowiedzialna za utworzenie krawedzi
 		menuItem = new JMenuItem("Utworz krawedz z wezla");
 		menuItem.addActionListener(actionListener -> {
-			int x1 = node.getX();
-			int y1 = node.getY();
-			mouseCursor = Cursor.WAIT_CURSOR;
+			mouseButtonRight = true;
+			setMouseCursor();
+			if(nodeUnderCursor != null) {
+				new Line(node, nodeUnderCursor);
+			}
 		});
 		popup.add(menuItem);
 		

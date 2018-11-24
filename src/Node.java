@@ -25,8 +25,9 @@ public class Node{
 	//wspolrzedne i promien wezla
 	private int x,y,r;
 	private Color color;
-
 	
+
+
 	public Color getColor() {
 		return color;
 	}

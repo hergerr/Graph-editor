@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 /*
  * 
@@ -52,6 +53,19 @@ public class Graph implements Serializable{
 	}
 	
 	public void removeNode(Node node) {
+		Iterator<Line> iterator = lines.iterator();
+		
+		while(iterator.hasNext()) {
+			Line line = iterator.next();
+			
+			if(line.getNodeA() == node && line.getNodeB() != node) {
+				iterator.remove();
+			}
+			
+			if(line.getNodeA() != node && line.getNodeB() == node) {
+				iterator.remove();
+			}
+		}
 		nodes.remove(node);
 	}
 	
