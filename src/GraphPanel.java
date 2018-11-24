@@ -153,6 +153,13 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 					lineUnderCursor = null;
 				}
 				break;
+			case KeyEvent.VK_9:
+				nodeUnderCursor.increaseRadius();
+				System.out.println("PLUS");
+				break;
+			case KeyEvent.VK_MINUS:
+				nodeUnderCursor.decreaseRadius();
+				break;
 		}
 	}
 	repaint();
@@ -265,8 +272,18 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 			graph.removeLine(line);
 			repaint();
 		});
-		
 		popup.add(menuItem);
+		
+		menuItem = new JMenuItem("Zmien kolor krawedzi");
+		menuItem.addActionListener(actionListener ->{
+			Color newColor = JColorChooser.showDialog(this, "Wybierz kolor", line.getColor());
+			if(newColor != null) {
+				line.setColor(newColor);
+			}
+			repaint();
+		});
+		popup.add(menuItem);
+		
 		popup.show(event.getComponent(), event.getX(), event.getY());
 	}
 

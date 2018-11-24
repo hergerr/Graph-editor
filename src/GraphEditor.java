@@ -38,8 +38,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 					"   SHIFT + strza³ki ==> szybkie przesuwanie wszystkich kó³\n\n" +
 					"ponadto gdy kursor wskazuje ko³o:\n" +
 					"   DEL   ==> kasowanie ko³a\n" +
-					"   +, -   ==> powiêkszanie, pomniejszanie ko³a\n" +
-					"   r,g,b ==> zmiana koloru ko³a\n\n" +
+					"   WAZNE!!! 9, -   ==> powiêkszanie, pomniejszanie ko³a\n" +
 					"Operacje myszka:\n" +
 					"   przeci¹ganie ==> przesuwanie wszystkich kó³\n" +
 					"   PPM ==> tworzenie nowego ko³a w niejscu kursora\n" +

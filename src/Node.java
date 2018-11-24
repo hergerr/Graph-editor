@@ -83,4 +83,11 @@ public class Node implements Serializable{
 		return  (x-mx)*(x-mx)+(y-my)*(y-my) <= r*r;
 	}
 	
+	public int increaseRadius() {
+		return ++r; 
+	}
+	
+	public int decreaseRadius() {
+		return --r;
+	}
 }

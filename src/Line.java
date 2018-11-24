@@ -10,7 +10,7 @@ public class Line implements Serializable{
 	
 	public void draw(Graphics g) {
 		g.drawLine(nodeA.getX(), nodeA.getY(), nodeB.getX(), nodeB.getY());
-		g.setColor(Color.BLACK);
+		g.setColor(Color.BLUE);
 	}
 	
 	public boolean isMouseOver(int mx, int my) {
@@ -25,7 +25,7 @@ public class Line implements Serializable{
 		
 		sb.append(nodeA.getY());
 		sb.append(")");
-		sb.append(" -------->");
+		sb.append(" --------> ");
 		
 		sb.append("(");
 		sb.append(nodeB.getX());

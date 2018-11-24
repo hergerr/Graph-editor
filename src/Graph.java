@@ -73,12 +73,14 @@ public class Graph implements Serializable{
 	}
 	
 	public void draw(Graphics g) {
-		for(Node node: nodes) {
-			node.draw(g);
-		}
-		
 		for(Line line:lines) {
 			line.draw(g);
 		}
+		
+		for(Node node: nodes) {
+			node.draw(g);
+		}
 	}
+	
+
 }
