@@ -1,7 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public class Line {
+public class Line implements Serializable{
+	private static final long serialVersionUID = 1L;
 	Color color;
 	Node nodeA, nodeB;
 	

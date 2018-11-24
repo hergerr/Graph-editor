@@ -29,11 +29,10 @@ import javax.swing.JPopupMenu;
  */
 
 public class GraphPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener{
-
 	private static final long serialVersionUID = 1L;
-
 	private Graph graph;
 	private int mouseX, mouseY;
+	@SuppressWarnings("unused")
 	private boolean mouseButtonLeft, mouseButtonRight;
 	private int mouseCursor = Cursor.DEFAULT_CURSOR;
 	private Node nodeUnderCursor = null;
@@ -54,6 +53,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	
 	public void setGraph(Graph graph) {
 		this.graph = graph;
+		repaint();
 	}
 	
 	public Node findNode(int mx, int my) {

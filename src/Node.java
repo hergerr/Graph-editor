@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 /*
  * 
@@ -20,8 +19,8 @@ import java.util.List;
  * 
  */
 
-public class Node{
-	
+public class Node implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//wspolrzedne i promien wezla
 	private int x,y,r;
 	private Color color;
