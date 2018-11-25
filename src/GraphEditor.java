@@ -17,12 +17,14 @@ import javax.swing.JOptionPane;
 
 /*
  *  Program: Edytor grafu
- *     Plik: GraphEditor.java
+ *     	Plik: GraphEditor.java
+ *     
+ *     	UWAGA: W celu uzyskania poprawnych znak贸w w dokumentacji pliki s膮 kodowane w UTF-8	
  *
- *  Implementacja wygl筪u okna
+ *  	Implementacja wygl膮du okna
  *
- *    Autor: Tymoteusz Frankiewicz
- *     Data:  listopad 2018 r.
+ *    	Autor: Tymoteusz Frankiewicz
+ *     	Data:  listopad 2018 r.
  */
 
 public class GraphEditor extends JFrame implements ActionListener{
@@ -33,19 +35,19 @@ public class GraphEditor extends JFrame implements ActionListener{
 	
 	private static final String APP_INSTRUCTION =
 			"                  O P I S   P R O G R A M U \n\n" +
-					"Aktywna klawisze:\n" +
-					"   strza砶i ==> przesuwanie wszystkich k蟪\n" +
-					"   SHIFT + strza砶i ==> szybkie przesuwanie wszystkich k蟪\n\n" +
-					"ponadto gdy kursor wskazuje ko硂:\n" +
-					"   DEL   ==> kasowanie ko砤\n" +
-					"   WAZNE!!! 9, -   ==> powi阫szanie, pomniejszanie ko砤\n" +
+					"Aktywne klawisze:\n" +
+					"   strza艂ki ==> przesuwanie wszystkich wierzcho艂k贸w\n" +
+					"   SHIFT + strza艂ki ==> szybkie przesuwanie wszystkich wierzcho艂k贸w\n\n" +
+					"ponadto gdy kursor wskazuje wierzcho艂ek:\n" +
+					"   DEL   ==> kasowanie wierzcho艂ka\n" +
+					"   WAZNE!!! 9, -   ==> powi臋kszanie, pomniejszanie wierzcho艂ka\n" +
 					"Operacje myszka:\n" +
-					"   przeci筭anie ==> przesuwanie wszystkich k蟪\n" +
-					"   PPM ==> tworzenie nowego ko砤 w niejscu kursora\n" +
-					"ponadto gdy kursor wskazuje ko硂:\n" +
-					"   przeci筭anie ==> przesuwanie ko砤\n" +
-					"   PPM ==> zmiana koloru ko砤\n" +
-					"                   lub usuwanie ko砤\n";
+					"   przeci膮ganie ==> przesuwanie wszystkich wierzcho艂ka\n" +
+					"   PPM ==> tworzenie nowego wierzcho艂ka w miejscu kursora\n" +
+					"ponadto gdy kursor wskazuje wierzcho艂ka:\n" +
+					"   przeci膮ganie ==> przesuwanie wierzcho艂ka\n" +
+					"   PPM ==> zmiana koloru wierzcho艂ka\n" +
+					"                   lub usuwanie wierzcho艂ka\n";
 	
 	public static void main(String[] args) {
 		new GraphEditor();
@@ -58,7 +60,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 	private JMenuItem menuShowExample = new JMenuItem("Przyklad");
 	private JMenuItem menuExit = new JMenuItem("Zakoncz");
 	private JMenuItem menuListOfNodes = new JMenuItem("Lista wezlow");
-	private JMenuItem menuListOfLines = new JMenuItem("Lista kraw阣zi");
+	private JMenuItem menuListOfLines = new JMenuItem("Lista kraw臋dzi");
 	private JMenuItem menuSaveGraph = new JMenuItem("Zapisz graf");
 	private JMenuItem menuReadGraph = new JMenuItem("Wczytaj graf");
 	private JMenuItem menuAuthor = new JMenuItem("Autor");
@@ -111,7 +113,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 	private void showListOfNodes(Graph graph) {
 		Node array[] = graph.getNodes();
 		int i = 0;
-		StringBuilder message = new StringBuilder("Liczba w陑丑w " + array.length + "\n");
+		StringBuilder message = new StringBuilder("Liczba w臋z艂贸w " + array.length + "\n");
 		for(Node node: array) {
 			message.append(node + "   ");
 			if(i % 5 == 0) {
@@ -119,13 +121,13 @@ public class GraphEditor extends JFrame implements ActionListener{
 			}
 		}
 		
-		JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista w陑丑w", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista w臋z艂贸w", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	private void showListOfLines(Graph graph) {
 		Line array[] = graph.getLines();
 		int i = 0;
-		StringBuilder message = new StringBuilder("Liczba kraw阣zi " + array.length + "\n");
+		StringBuilder message = new StringBuilder("Liczba kraw臋dzi " + array.length + "\n");
 		
 		for(Line line: array) {
 			message.append(line + "   ");
@@ -133,7 +135,7 @@ public class GraphEditor extends JFrame implements ActionListener{
 				message.append("\n");
 			}
 		}
-		JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista kraw阣zi", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(this, message, APP_TITLE + " - Lista kraw臋dzi", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	private void showExampleGraph() {

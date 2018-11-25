@@ -20,38 +20,76 @@ import java.util.List;
 
 
 
+/**
+ * Klasa odpowiedzialna za reprezentacje grafu
+ * <p> Pozwala na przechowywanie wierzcho艂k贸w i kraw臋dzi,
+ * a tak偶e zarz膮dania nimi (dodawanie, usuwanie)
+ * 
+ * @author Tymoteusz Frankiewicz
+ * @version 25 listopada 2018
+ */
 public class Graph implements Serializable{
+	/**
+	 * Zmienna odpowiedzialna za serializacje
+	 */
 	private static final long serialVersionUID = 1L;
 
-	//lista w陑丑w grafu
+	/**
+	 * Lista w臋z艂贸w grafu
+	 */
 	private List<Node> nodes;
 	
-	//lista krawedzi grafu
+	/**
+	 * lista krawedzi grafu
+	 */
 	private List<Line> lines;
 	
+	/**
+	 * Kontruktor inicjalizuj膮cy nowy graf
+	 */
 	public Graph() {
 		this.nodes = new ArrayList<Node>();
 		this.lines = new ArrayList<Line>();
 	}
 	
+	/**
+	 * Dodaje now膮 kraw臋dz do listy kraw臋dzi w grafie
+	 * @param Kraw臋dz do dodania
+	 */
 	public void addLine(Line line) {
 		lines.add(line);
 	}
 	
+	/**
+	 * Usuwa kraw臋dz z listy krawedzi w grafie
+	 * @param Krawedz do usuniecia
+	 */
 	public void removeLine(Line line) {
 		lines.remove(line);
 	}
 	
+	/**
+	 * Zwraca tablice z kraw臋dziami grafu
+	 * @return Tablica kraw臋dzi
+	 */
 	public Line[] getLines() {
 		Line[] array = new Line[0];
 		return lines.toArray(array);
 	}
 	
-	
+	/**
+	 * Dodaje nowy wierzcho艂ek do listy w臋z艂贸w w grafie
+	 * @param Wierzcho艂ek do dodanie
+	 */
 	public void addNode(Node node) {
 		nodes.add(node);
 	}
 	
+	/**
+	 * Usuwa wierzcho艂ek z listy wierzcho艂k贸w w grafie
+	 * <p><b>Uwaga: Nalezy wtedy tez usunac wychodzace z niego krawedzie</b>
+	 * @param Wierzcho艂ek do usuniecia
+	 */
 	public void removeNode(Node node) {
 		Iterator<Line> iterator = lines.iterator();
 		
@@ -66,12 +104,19 @@ public class Graph implements Serializable{
 		nodes.remove(node);
 	}
 	
+	/**
+	 * Zwraca tablice z wierzcho艂kami grafu
+	 * @return Tablica wierzcho艂k贸w
+	 */
 	public Node[] getNodes() {
-		//jak to dzia砤
 		Node[] array = new Node[0];
 		return nodes.toArray(array);	
 	}
 	
+	/**
+	 * Rysuje ca艂y graf, czyli wieracho艂ki i kraw臋dzie w taki spos贸b, aby kraw臋dzie znajdowa艂y si臋 pod wierzcho艂kami
+	 * @param Grafika
+	 */
 	public void draw(Graphics g) {
 		for(Line line:lines) {
 			line.draw(g);

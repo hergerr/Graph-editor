@@ -16,16 +16,18 @@ import javax.swing.JPopupMenu;
  *  Program: Edytor grafu
  *     Plik: GraphPanel.java
  *
- *  Klasa GraphPanel implementuje podstawowe funkcjonalnoœci
- *  graficznego edytora grafu
- *  Klasa umo¿liwia:
- *     - rysowanie grafu w oknie,
- *     - obs³ugê zdarzeñ generowanych przez myszkê,
- *     - tworzenie i obs³ugê menu kontekstowych
- *       umo¿liwiaj¹cych wykonywanie operacji edycyjnych.
+ *		UWAGA: W celu uzyskania poprawnych znakÃ³w w dokumentacji pliki sÄ… kodowane w UTF-8		
  *
- *    Autor:  Tymoteusz Frankiewicz
- *     Data:  listopad 2018 r.
+ *  Klasa GraphPanel implementuje podstawowe funkcjonalnoï¿½ci
+ *  graficznego edytora grafu
+ *  Klasa umoÅ¼liwia:
+ *     - rysowanie grafu w oknie,
+ *     - obsÅ‚ugÄ™ zdarzeÅ„ generowanych przez myszkï¿½,
+ *     - tworzenie i obsÅ‚ugÄ™ menu kontekstowych
+ *       umoÅ¼liwiajÄ…cych wykonywanie operacji edycyjnych.
+ *
+ *    	Autor:  Tymoteusz Frankiewicz
+ *     	Data:  listopad 2018 r.
  */
 
 public class GraphPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener{
@@ -262,7 +264,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	}
 
 	private void createPopupMenu(MouseEvent event) {
-		JMenuItem menuItem = new JMenuItem("Utworz nowy wezel");
+		JMenuItem menuItem = new JMenuItem("UtwÃ³rz nowy wÄ™zeÅ‚");
 		JPopupMenu popup = new JPopupMenu();
 		menuItem.addActionListener((actionEvent)->{
 			graph.addNode(new Node(event.getX(),event.getY()));
@@ -277,7 +279,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	}
 	
 	private void createPopupMenu(MouseEvent event, Line line) {
-		JMenuItem menuItem = new JMenuItem("Usuñ krawêdz");
+		JMenuItem menuItem = new JMenuItem("UsuÅ„ krawÄ™dz");
 		JPopupMenu popup = new JPopupMenu();
 		menuItem.addActionListener(actionListener -> {
 			graph.removeLine(line);
@@ -299,7 +301,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	}
 
 	private void createPopupMenu(MouseEvent event, Node node) {
-		JMenuItem menuItem = new JMenuItem("Zmieñ kolor wêz³a");
+		JMenuItem menuItem = new JMenuItem("ZmieÅ„ kolor wÄ™zÅ‚a");
 		JPopupMenu popup = new JPopupMenu();
 		
 		
@@ -315,7 +317,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		popup.add(menuItem);
 		
 		//opcja odpowiedzialna za usuwanie wezlow
-		menuItem = new JMenuItem("Usuñ wêze³");
+		menuItem = new JMenuItem("UsuÅ„ wÄ™zeÅ‚");
 		menuItem.addActionListener((actionListener)->{
 			graph.removeNode(node);
 			repaint();
@@ -323,7 +325,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		popup.add(menuItem);
 		
 		//opcja odpowiedzialna za utworzenie krawedzi
-		menuItem = new JMenuItem("Utworz krawedz z wezla");
+		menuItem = new JMenuItem("Utworz krawedz z wÄ™zÅ‚a");
 		menuItem.addActionListener(actionListener -> {
 			newLineNode = node;
 		});
