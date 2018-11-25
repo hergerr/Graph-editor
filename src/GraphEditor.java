@@ -42,9 +42,9 @@ public class GraphEditor extends JFrame implements ActionListener{
 					"   DEL   ==> kasowanie wierzchołka\n" +
 					"   WAZNE!!! 9, -   ==> powiększanie, pomniejszanie wierzchołka\n" +
 					"Operacje myszka:\n" +
-					"   przeciąganie ==> przesuwanie wszystkich wierzchołka\n" +
+					"   przeciąganie ==> przesuwanie wszystkich wierzchołków\n" +
 					"   PPM ==> tworzenie nowego wierzchołka w miejscu kursora\n" +
-					"ponadto gdy kursor wskazuje wierzchołka:\n" +
+					"ponadto gdy kursor wskazuje wierzchołek:\n" +
 					"   przeciąganie ==> przesuwanie wierzchołka\n" +
 					"   PPM ==> zmiana koloru wierzchołka\n" +
 					"                   lub usuwanie wierzchołka\n";
