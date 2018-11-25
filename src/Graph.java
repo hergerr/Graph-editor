@@ -54,7 +54,7 @@ public class Graph implements Serializable{
 	
 	/**
 	 * Dodaje nową krawędz do listy krawędzi w grafie
-	 * @param Krawędz do dodania
+	 * @param line Krawędz do dodania
 	 */
 	public void addLine(Line line) {
 		lines.add(line);
@@ -62,7 +62,7 @@ public class Graph implements Serializable{
 	
 	/**
 	 * Usuwa krawędz z listy krawedzi w grafie
-	 * @param Krawedz do usuniecia
+	 * @param line Krawedz do usuniecia
 	 */
 	public void removeLine(Line line) {
 		lines.remove(line);
@@ -79,7 +79,7 @@ public class Graph implements Serializable{
 	
 	/**
 	 * Dodaje nowy wierzchołek do listy węzłów w grafie
-	 * @param Wierzchołek do dodanie
+	 * @param node Wierzchołek do dodanie
 	 */
 	public void addNode(Node node) {
 		nodes.add(node);
@@ -88,7 +88,7 @@ public class Graph implements Serializable{
 	/**
 	 * Usuwa wierzchołek z listy wierzchołków w grafie
 	 * <p><b>Uwaga: Nalezy wtedy tez usunac wychodzace z niego krawedzie</b>
-	 * @param Wierzchołek do usuniecia
+	 * @param node Wierzchołek do usuniecia
 	 */
 	public void removeNode(Node node) {
 		Iterator<Line> iterator = lines.iterator();
@@ -115,7 +115,7 @@ public class Graph implements Serializable{
 	
 	/**
 	 * Rysuje cały graf, czyli wierachołki i krawędzie w taki sposób, aby krawędzie znajdowały się pod wierzchołkami
-	 * @param Grafika
+	 * @param g Referencja do grafiki
 	 */
 	public void draw(Graphics g) {
 		for(Line line:lines) {

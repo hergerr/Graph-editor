@@ -3,11 +3,10 @@ import java.awt.Graphics;
 import java.io.Serializable;
 
 /**
- * Klasa reprezentująca wierzchołek grafu
- * 
- * Klasa odpowiada za
+ * Klasa reprezentująca wierzchołek grafu.
+ * Klasa odpowiada za:
  * <ol>
- * <li>Przecowywanie atrybutow: połozenia (x, y), promienia (r) i koloru (color)</li>
+ * <li>Przechowywanie atrybutow: połozenia (x, y), promienia (r) i koloru (color)</li>
  * <li>Udostępnienie metody <code>draw()</code>, która odpowiedzialna jest za rysowanie wierzchołka</li>
  * <li>Udostępnienie metod do zwiększania (<code>increaseRadius()</code>) i zmniejszania (<code>decreasceRadius()</code>) promienia wierchołka</li>
  * <li>Udostępnienie metody pozwalającej na detekcje czy kursor znajduje się w obszrze wierzchołka (<code>isMouseOver()</code>)</li>
@@ -44,7 +43,7 @@ public class Node implements Serializable{
 
 	/**
 	 * Metoda zwracająca kolor wierzchołka
-	 * @return Kolor
+	 * @return Kolor wierzchołka
 	 */
 	public Color getColor() {
 		return color;
@@ -52,7 +51,7 @@ public class Node implements Serializable{
 
 	/**
 	 * Metoda ustawiająca dany kolor
-	 * @param Kolor
+	 * @param color Kolor wierzchołka
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -60,7 +59,7 @@ public class Node implements Serializable{
 
 	/**
 	 * Metoda zwraca pozycje x wierzchołka
-	 * @return x
+	 * @return Pozycja x
 	 */
 	public int getX() {
 		return x;
@@ -68,7 +67,7 @@ public class Node implements Serializable{
 
 	/**
 	 * Matoda ustawiająca daną pozycje x
-	 * @param x
+	 * @param x Pozycja x
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -76,7 +75,7 @@ public class Node implements Serializable{
 
 	/**
 	 * Metoda zwraca pozycje y wierzchołka
-	 * @return y
+	 * @return Pozycja y
 	 */
 	public int getY() {
 		return y;
@@ -84,7 +83,7 @@ public class Node implements Serializable{
 
 	/**
 	 * Matoda ustawiająca daną pozycje y
-	 * @param y
+	 * @param y Pozcyja y
 	 */
 	public void setY(int y) {
 		this.y = y;
@@ -100,7 +99,7 @@ public class Node implements Serializable{
 
 	/**
 	 * Metoda ustawiająca promień
-	 * @param Promień
+	 * @param r Promień
 	 */
 	public void setR(int r) {
 		this.r = r;
@@ -109,8 +108,8 @@ public class Node implements Serializable{
 	/**
 	 * Konstruktor ustawiający wierzchołek na rządanych pozycjach (x,y)
 	 * <p><b>Domyślnie ustawia promień na 5, a kolor na czarny</b>
-	 * @param x
-	 * @param y
+	 * @param x Pozcyja x
+	 * @param y Pozycja y
 	 */
 	public Node(int x, int y) {
 		this.x = x;
@@ -121,7 +120,7 @@ public class Node implements Serializable{
 	
 	/**
 	 * Metoda odpowiedzialna za wyryzowanie wierzchołka
-	 * @param Grafika
+	 * @param g Referencja do grafiki
 	 */
 	void draw(Graphics g) {
 		g.setColor(color);
@@ -143,8 +142,8 @@ public class Node implements Serializable{
 
 	/**
 	 * Metoda odpowiedzialna za sprawdzenie czy kursor jest w obrębie wierzchołka
-	 * @param Pozycja x kursora
-	 * @param Pozycja y kursora
+	 * @param mx Pozycja x kursora
+	 * @param my Pozycja y kursora
 	 * @return Czy kursor jest w wierzchołku
 	 */
 	public boolean isMouseOver(int mx, int my) {

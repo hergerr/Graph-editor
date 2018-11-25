@@ -5,11 +5,10 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 
 /**
- * Klasa reprezentująca krawędz grafu
- * 
- * Klasa odpowiada za
+ * Klasa reprezentująca krawędz grafu.
+ * Klasa odpowiada za:.
  * <ol>
- * <li>Przecowywanie atrybutow: dwóch węzłów (NodeA, NodeB) z których wychodzi krawędz i jej koloru</li>
+ * <li>Przechowywanie atrybutow: dwóch węzłów (NodeA, NodeB) z których wychodzi krawędz i jej koloru</li>
  * <li>Udostępnienie metody <code>draw()</code>, która odpowiedzialna jest za rysowanie krawedzi</li>
  * <li>Udostępnienie metody pozwalającej na detekcje czy kursor znajduje się w obszarze krawedzi (<code>isMouseOver()</code>)</li>
  * </ol>
@@ -41,7 +40,7 @@ public class Line implements Serializable{
 	
 	/**
 	 * Metoda odpowiedzialna za wyrysowanie pojedynczej krawedzi
-	 * @param Grafika
+	 * @param g Referencja do grafiki
 	 */
 	public void draw(Graphics g) {
 		Graphics2D g2= (Graphics2D)g;
@@ -52,8 +51,8 @@ public class Line implements Serializable{
 	
 	/**
 	 * Metoda sprawdzająca czy kursor znajduje sie w obrębie krawedzi
-	 * @param Pozycja x kursora
-	 * @param Pozycja y kursora
+	 * @param mx Pozycja x kursora
+	 * @param my Pozycja y kursora
 	 * @return Czy kursor jest w obrebie krawedzi
 	 */
 	public boolean isMouseOver(int mx, int my) {
@@ -96,7 +95,7 @@ public class Line implements Serializable{
 
 	/**
 	 * Metoda ustawiająca zadany kolor krawedzi
-	 * @param Kolor krawedzi
+	 * @param color Kolor krawedzi
 	 */
 	public void setColor(Color color) {
 		this.color = color;
@@ -113,7 +112,7 @@ public class Line implements Serializable{
 
 	/**
 	 * Metoda ustawiająca pierwszy z wierzchołków
-	 * @param Pierwszy z wierzchołków
+	 * @param nodeA Pierwszy z wierzchołków
 	 */
 	public void setNodeA(Node nodeA) {
 		this.nodeA = nodeA;
@@ -129,7 +128,7 @@ public class Line implements Serializable{
 
 	/**
 	 * Metoda ustawiająca drugi z wierzchołków
-	 * @param Drugi z wierzchołków
+	 * @param nodeB Drugi z wierzchołków
 	 */
 	public void setNodeB(Node nodeB) {
 		this.nodeB = nodeB;
@@ -138,8 +137,8 @@ public class Line implements Serializable{
 	/**
 	 * Konstruktor przyjmujący jako argumenty węzły
 	 * <p>Domyslnie ustawia kolor krawedzi na różowy
-	 * @param Pierwszy z wierzchołków
-	 * @param Drugi z wierzchołków
+	 * @param nodeA Pierwszy z wierzchołków
+	 * @param nodeB Drugi z wierzchołków
 	 */
 	public Line(Node nodeA, Node nodeB) {
 		this.nodeA = nodeA;
@@ -149,9 +148,9 @@ public class Line implements Serializable{
 	
 	/**
 	 * Konkrtuktor przyjmujący jako argumenty węzły i kolor
-	 * @param Pierwszy z wierzchołków
-	 * @param Drugi z wierzchołków
-	 * @param Kolor wierzchołka
+	 * @param nodeA Pierwszy z wierzchołków
+	 * @param nodeB Drugi z wierzchołków
+	 * @param color Kolor wierzchołka
 	 */
 	public Line(Node nodeA, Node nodeB, Color color) {
 		this.nodeA = nodeA;
